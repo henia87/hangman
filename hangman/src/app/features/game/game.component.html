@@ -1,0 +1,14 @@
+<div class="game-container">
+  <h1>HANGMAN GAME</h1>
+  <app-game-controls
+    (restart)="onRestart()"
+    (nextGame)="onNextGame()"
+    (hint)="onHint()"
+  ></app-game-controls>
+  <app-hangman-graphic [incorrectGuesses]="incorrectGuesses"></app-hangman-graphic>
+  <app-word-to-guess [word]="wordToGuess" [guessedLetters]="guessedLetters"></app-word-to-guess>
+  <app-guessed-letters [guessed]="guessedLetters"></app-guessed-letters>
+  <app-game-status [attemptsLeft]="attemptsLeft" [maxAttempts]="maxAttempts" [status]="gameStatus"></app-game-status>
+  <app-feedback-text [feedback]="feedback"></app-feedback-text>
+  <app-user-input (guess)="onGuess($event)"></app-user-input>
+</div>

@@ -1,0 +1,15 @@
+<div class="game-status">
+  <div class="status-row">
+    <span class="label">Attempts left:</span>
+    <span class="attempts">{{ attemptsLeft }} / {{ maxAttempts }}</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress" [style.width.%]="(attemptsLeft / maxAttempts) * 100"></div>
+  </div>
+  <div class="status-row">
+    <span class="label">Status:</span>
+    <span class="status-text" [ngClass]="status">
+      {{ status === 'playing' ? 'Playing...' : (status === 'won' ? 'You won!' : 'Game Over!') }}
+    </span>
+  </div>
+</div>

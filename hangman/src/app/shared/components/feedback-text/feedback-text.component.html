@@ -1,0 +1,5 @@
+<div class="feedback-text" *ngIf="feedback">
+  <span [ngClass]="feedback">
+    {{ feedback === 'correct' ? 'Correct guess!' : 'Incorrect guess.' }}
+  </span>
+</div>

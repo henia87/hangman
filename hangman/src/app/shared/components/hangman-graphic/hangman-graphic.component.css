@@ -1,0 +1,9 @@
+.hangman-svg {
+  width: 120px;
+  height: 150px;
+  display: block;
+  margin: 0 auto;
+  stroke: #222;
+  stroke-width: 0.25;
+  fill: none;
+}

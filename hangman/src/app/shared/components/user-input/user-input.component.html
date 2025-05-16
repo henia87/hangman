@@ -1,0 +1,14 @@
+<form (ngSubmit)="onSubmit()" autocomplete="off">
+  <label for="letter-input">Guess a letter:</label>
+  <input
+    id="letter-input"
+    type="text"
+    maxlength="1"
+    [(ngModel)]="userInput"
+    name="userInput"
+    required
+    pattern="[a-zA-Z]"
+    autofocus
+  />
+  <button type="submit">Guess</button>
+</form>

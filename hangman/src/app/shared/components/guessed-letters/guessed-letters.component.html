@@ -1,0 +1,4 @@
+<div class="guessed-letters">
+  <span *ngIf="guessed.length === 0">No guesses yet.</span>
+  <span *ngFor="let letter of guessed" class="guessed-letter">{{ letter | uppercase }}</span>
+</div>

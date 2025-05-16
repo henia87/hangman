@@ -1,0 +1,22 @@
+<svg viewBox="0 0 10 12" class="hangman-svg">
+  <!-- 1. Base -->
+  <path d="M1,11 h8" *ngIf="incorrectGuesses > 0" />
+  <!-- 2. Pole -->
+  <path d="M9,11 v-10" *ngIf="incorrectGuesses > 1" />
+  <!-- 3. Top bar -->
+  <path d="M9,1 h-4" *ngIf="incorrectGuesses > 2" />
+  <!-- 4. Rope -->
+  <path d="M5,1 v2" *ngIf="incorrectGuesses > 3" />
+  <!-- 5. Head -->
+  <circle cx="5" cy="4" r="1" *ngIf="incorrectGuesses > 4" />
+  <!-- 6. Body -->
+  <path d="M5,5 v3" *ngIf="incorrectGuesses > 5" />
+  <!-- 7. Left arm -->
+  <path d="M5,5 l-2,2" *ngIf="incorrectGuesses > 6" />
+  <!-- 8. Right arm -->
+  <path d="M5,5 l2,2" *ngIf="incorrectGuesses > 7" />
+  <!-- 9. Left leg -->
+  <path d="M5,8 l-2,2" *ngIf="incorrectGuesses > 8" />
+  <!-- 10. Right leg -->
+  <path d="M5,8 l2,2" *ngIf="incorrectGuesses > 9" />
+</svg>
