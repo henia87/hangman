@@ -1,4 +1,8 @@
 <div class="guessed-letters">
   <span *ngIf="guessed.length === 0">No guesses yet.</span>
-  <span *ngFor="let letter of guessed" class="guessed-letter">{{ letter | uppercase }}</span>
+  <span *ngFor="let letter of guessed"
+        class="guessed-letter"
+        [ngClass]="isCorrect(letter) ? 'correct' : 'incorrect'">
+    {{ letter | uppercase }}
+  </span>
 </div>

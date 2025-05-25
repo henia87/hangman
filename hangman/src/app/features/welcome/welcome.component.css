@@ -1,4 +1,4 @@
-.game-background {
+.welcome-background {
   min-height: 100vh;
   background: #e0e0e0;
   display: flex;
@@ -6,20 +6,25 @@
   justify-content: center;
 }
 
-.game-container {
+.welcome-box {
   background: #bdbdbd;
   border: 2px solid #222;
   box-shadow: 6px 6px 18px 0 rgba(0,0,0,0.18);
   border-radius: 16px;
-  padding: 2.5rem 2rem 2rem 2rem;
-  max-width: 520px;
+  padding: 3rem 2.5rem 2rem 2.5rem;
+  max-width: 420px;
   width: 100%;
   text-align: center;
-  margin: 0 auto;
 }
 
-.game-container h1 {
+.welcome-box h1 {
   margin-bottom: 1.5rem;
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #222;
+}
+
+.welcome-box p {
+  color: #333;
+  font-size: 1.15rem;
+  line-height: 1.6;
 }

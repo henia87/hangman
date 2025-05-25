@@ -8,4 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class GuessedLettersComponent {
   @Input() guessed: string[] = [];
+  @Input() word: string = '';
+
+  isCorrect(letter: string): boolean {
+    return this.word.includes(letter);
+  }
 }

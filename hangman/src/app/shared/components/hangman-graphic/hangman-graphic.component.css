@@ -6,4 +6,5 @@
   stroke: #222;
   stroke-width: 0.25;
   fill: none;
+  transform: scaleX(-1);
 }

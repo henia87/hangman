@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserInputComponent } from './components/user-input/user-input.component';
 import { LetterComponent } from './components/letter/letter.component';
 import { GuessedLettersComponent } from './components/guessed-letters/guessed-letters.component';
@@ -25,7 +25,8 @@ import { ButtonComponent } from './components/button/button.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     UserInputComponent,

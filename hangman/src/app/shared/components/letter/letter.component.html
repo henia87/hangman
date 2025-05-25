@@ -1,3 +1,4 @@
 <span class="letter">
-  {{ letter ? letter : '_' }}
+  <ng-container *ngIf="letter; else masked">{{ letter }}</ng-container>
+  <ng-template #masked>&nbsp;</ng-template>
 </span>

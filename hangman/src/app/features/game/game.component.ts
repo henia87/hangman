@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-game',
@@ -7,62 +9,33 @@ import { Component } from '@angular/core';
   styleUrls: ['./game.component.css']
 })
 export class GameComponent {
-  // Game state
-  wordToGuess: string = 'BLACKMETALISTKRIEG';
-  guessedLetters: string[] = [];
-  incorrectGuesses: number = 0;
-  maxAttempts: number = 10;
-  attemptsLeft: number = 10;
-  gameStatus: 'playing' | 'won' | 'lost' = 'playing';
-  feedback: 'correct' | 'incorrect' | null = null;
+  gameState$;
+  resetKey = 0;
 
-  // Handle a letter guess
+  constructor(public gameService: GameService, private router: Router) {
+    this.gameState$ = this.gameService.gameState$;
+  }
+
   onGuess(letter: string) {
-    if (this.gameStatus !== 'playing' || !letter || this.guessedLetters.includes(letter)) {
-      return;
-    }
-    this.guessedLetters.push(letter);
-    if (this.wordToGuess.includes(letter)) {
-      this.feedback = 'correct';
-      if (this.wordToGuess.split('').every(l => this.guessedLetters.includes(l))) {
-        this.gameStatus = 'won';
-      }
-    } else {
-      this.feedback = 'incorrect';
-      this.incorrectGuesses++;
-      this.attemptsLeft = this.maxAttempts - this.incorrectGuesses;
-      if (this.incorrectGuesses >= this.maxAttempts) {
-        this.gameStatus = 'lost';
-      }
-    }
+    this.gameService.guessLetter(letter);
   }
 
-  // Restart the current game
   onRestart() {
-    this.resetGame(this.wordToGuess);
+    this.gameService.restartGame();
+    this.resetKey++;
   }
 
-  // Start a new game (for now, just resets with the same word)
-  onNextGame() {
-    // In a real app, pick a new word here
-    this.resetGame('BLACKMETALISTKRIEG');
+  onNewGame() {
+    this.gameService.nextGame();
+    this.resetKey++;
   }
 
-  // Show a hint (for now, just alert)
   onHint() {
-    // Example: reveal a random unguessed letter
-    const unguessed = this.wordToGuess.split('').filter(l => !this.guessedLetters.includes(l));
-    if (unguessed.length > 0) {
-      alert('Hint: ' + unguessed[Math.floor(Math.random() * unguessed.length)]);
-    }
+    this.gameService.showHint();
   }
 
-  private resetGame(word: string) {
-    this.wordToGuess = word;
-    this.guessedLetters = [];
-    this.incorrectGuesses = 0;
-    this.attemptsLeft = this.maxAttempts;
-    this.gameStatus = 'playing';
-    this.feedback = null;
+  onExit() {
+    localStorage.removeItem('hangman-game-state');
+    this.router.navigate(['/']);
   }
 }

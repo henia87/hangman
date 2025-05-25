@@ -1,14 +1,23 @@
-<form (ngSubmit)="onSubmit()" autocomplete="off">
-  <label for="letter-input">Guess a letter:</label>
-  <input
-    id="letter-input"
-    type="text"
-    maxlength="1"
-    [(ngModel)]="userInput"
-    name="userInput"
-    required
-    pattern="[a-zA-Z]"
-    autofocus
-  />
-  <button type="submit">Guess</button>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+  <div class="input-row">
+    <label for="letter-input">Guess a letter:</label>
+  </div>
+  <div class="input-row input-with-error">
+    <input
+      id="letter-input"
+      type="text"
+      maxlength="1"
+      formControlName="letter"
+      autofocus
+    />
+    <span class="input-error-space">
+      <span *ngIf="form.get('letter')?.invalid && (form.get('letter')?.dirty || form.get('letter')?.touched)" class="validation-error">
+        <span *ngIf="form.get('letter')?.errors?.['required']">Letter is required.</span>
+        <span *ngIf="form.get('letter')?.errors?.['pattern']">Enter a single letter (A-Z).</span>
+      </span>
+    </span>
+  </div>
+  <div class="input-row">
+    <app-button text="Guess" [type]="'submit'" [disabled]="form.invalid"></app-button>
+  </div>
 </form>

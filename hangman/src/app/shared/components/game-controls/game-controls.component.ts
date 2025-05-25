@@ -8,6 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class GameControlsComponent {
   @Output() restart = new EventEmitter<void>();
-  @Output() nextGame = new EventEmitter<void>();
+  @Output() newGame = new EventEmitter<void>();
   @Output() hint = new EventEmitter<void>();
+  @Output() exit = new EventEmitter<void>();
 }

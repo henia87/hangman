@@ -10,5 +10,6 @@ export class ButtonComponent {
   @Input() text: string = '';
   @Input() icon?: string;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
-  // Add more @Input()s as needed for modularity (e.g., disabled, color, etc.)
+  @Input() disabled: boolean = false;
+  // Add more @Input()s as needed for modularity (e.g., color, etc.)
 }
