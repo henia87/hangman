@@ -28,3 +28,9 @@
   color: #c62828;
   border-color: #c62828;
 }
+
+.guessed-letter.hinted {
+  background: #e3f0ff;
+  color: #1976d2;
+  border-color: #1976d2;
+}

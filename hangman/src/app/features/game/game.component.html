@@ -9,11 +9,11 @@
         (exit)="onExit()"
       ></app-game-controls>
       <app-hangman-graphic [incorrectGuesses]="state.incorrectGuesses.length"></app-hangman-graphic>
-      <app-word-to-guess [word]="state.word" [guessedLetters]="state.guessedLetters"></app-word-to-guess>
-      <app-guessed-letters [guessed]="state.guessedLetters" [word]="state.word"></app-guessed-letters>
+      <app-word-to-guess [word]="state.word" [guessedLetters]="state.guessedLetters" [hintedLetters]="state.hintedLetters || []"></app-word-to-guess>
+      <app-guessed-letters [guessed]="state.guessedLetters" [word]="state.word" [hintedLetters]="state.hintedLetters || []"></app-guessed-letters>
       <app-game-status [attemptsLeft]="state.maxErrors - state.incorrectGuesses.length" [maxAttempts]="state.maxErrors" [status]="state.isGameWon ? 'won' : state.isGameOver ? 'lost' : 'playing'"></app-game-status>
       <app-feedback-text [feedback]="null"></app-feedback-text>
-      <app-user-input (guess)="onGuess($event)" [resetKey]="resetKey"></app-user-input>
+      <app-user-input (guess)="onGuess($event)" [resetKey]="resetKey" [gameOver]="state.isGameOver || state.isGameWon"></app-user-input>
     </ng-container>
   </div>
 </div>

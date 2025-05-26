@@ -9,6 +9,7 @@ export interface GameState {
   maxErrors: number;
   isGameOver: boolean;
   isGameWon: boolean;
+  hintedLetters?: string[];
 }
 
 export const initialGameState: GameState = {
@@ -18,7 +19,8 @@ export const initialGameState: GameState = {
   incorrectGuesses: [],
   maxErrors: 10,
   isGameOver: false,
-  isGameWon: false
+  isGameWon: false,
+  hintedLetters: []
 };
 
 const GAME_STATE_STORAGE_KEY = 'hangman-game-state';
@@ -60,7 +62,7 @@ export class GameService {
     }
   }
 
-  guessLetter(letter: string) {
+  guessLetter(letter: string, hinted: boolean = false) {
     const state = { ...this._gameState.value };
     const upperLetter = letter.toUpperCase();
     if (state.isGameOver || state.isGameWon || state.guessedLetters.includes(upperLetter)) {
@@ -69,6 +71,9 @@ export class GameService {
     state.guessedLetters.push(upperLetter);
     if (state.word.includes(upperLetter)) {
       state.correctGuesses.push(upperLetter);
+      // Track if this was a hint
+      if (!state.hintedLetters) state.hintedLetters = [];
+      if (hinted) state.hintedLetters.push(upperLetter);
       const uniqueLetters = Array.from(new Set(state.word.split('')));
       if (uniqueLetters.every(l => state.guessedLetters.includes(l))) {
         state.isGameWon = true;
@@ -113,7 +118,9 @@ export class GameService {
     const state = this._gameState.value;
     const unguessed = state.word.split('').filter(l => !state.guessedLetters.includes(l));
     if (unguessed.length > 0) {
-      alert('Hint: ' + unguessed[Math.floor(Math.random() * unguessed.length)]);
+      const hintLetter = unguessed[Math.floor(Math.random() * unguessed.length)];
+      // Add the hint letter as a special type of guess
+      this.guessLetter(hintLetter, true);
     }
   }
 }

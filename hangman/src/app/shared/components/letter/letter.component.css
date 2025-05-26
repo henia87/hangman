@@ -8,3 +8,9 @@
   border-bottom: 2px solid #333;
   line-height: 2.2rem;
 }
+
+.letter.hinted {
+  color: #1976d2;
+  border-bottom: 2px solid #1976d2;
+  background: #e3f0ff;
+}

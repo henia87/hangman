@@ -4,14 +4,15 @@
   </div>
   <div class="input-row input-with-error">
     <input
+      #letterInput
       id="letter-input"
       type="text"
       maxlength="1"
       formControlName="letter"
-      autofocus
+      [disabled]="gameOver"
     />
     <span class="input-error-space">
-      <span *ngIf="form.get('letter')?.invalid && (form.get('letter')?.dirty || form.get('letter')?.touched)" class="validation-error">
+      <span *ngIf="!gameOver && form.get('letter')?.invalid && (form.get('letter')?.dirty || form.get('letter')?.touched)" class="validation-error">
         <span *ngIf="form.get('letter')?.errors?.['required']">Letter is required.</span>
         <span *ngIf="form.get('letter')?.errors?.['pattern']">Enter a single letter (A-Z).</span>
       </span>

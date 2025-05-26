@@ -1,4 +1,4 @@
-<span class="letter">
+<span class="letter" [ngClass]="hinted ? 'hinted' : ''">
   <ng-container *ngIf="letter; else masked">{{ letter }}</ng-container>
   <ng-template #masked>&nbsp;</ng-template>
 </span>

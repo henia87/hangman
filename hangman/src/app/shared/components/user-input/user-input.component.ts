@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, Output, EventEmitter, OnChanges, Input, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,7 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class UserInputComponent implements OnChanges {
   @Output() guess = new EventEmitter<string>();
   @Input() resetKey: number = 0;
+  @Input() gameOver: boolean = false;
   form: FormGroup;
+  @ViewChild('letterInput') letterInput?: ElementRef<HTMLInputElement>;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -23,13 +25,20 @@ export class UserInputComponent implements OnChanges {
       this.form.reset();
       this.form.markAsPristine();
       this.form.markAsUntouched();
+      setTimeout(() => this.letterInput?.nativeElement.focus());
     }
   }
 
   onSubmit() {
+    if (this.gameOver) {
+      return;
+    }
     if (this.form.valid) {
       this.guess.emit(this.form.value.letter.toLowerCase());
       this.form.reset();
+      setTimeout(() => this.letterInput?.nativeElement.focus());
+    } else {
+      setTimeout(() => this.letterInput?.nativeElement.focus());
     }
   }
 }

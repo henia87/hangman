@@ -9,9 +9,14 @@ import { Component, Input } from '@angular/core';
 export class WordToGuessComponent {
   @Input() word: string = '';
   @Input() guessedLetters: string[] = [];
+  @Input() hintedLetters: string[] = [];
 
-  get letters(): (string | null)[] {
-    // Return array of letters or underscores based on guessedLetters
-    return this.word.split('').map(l => this.guessedLetters.includes(l) ? l : null);
+  get letters(): { value: string | null, hinted: boolean }[] {
+    // Return array of objects: letter value and whether it was hinted
+    return this.word.split('').map(l =>
+      this.guessedLetters.includes(l)
+        ? { value: l, hinted: this.hintedLetters.includes(l) }
+        : { value: null, hinted: false }
+    );
   }
 }

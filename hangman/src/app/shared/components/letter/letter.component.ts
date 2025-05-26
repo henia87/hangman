@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class LetterComponent {
   @Input() letter: string | null = null;
+  @Input() hinted: boolean = false;
 }
