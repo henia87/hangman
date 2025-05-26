@@ -11,5 +11,4 @@ export class ButtonComponent {
   @Input() icon?: string;
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled: boolean = false;
-  // Add more @Input()s as needed for modularity (e.g., color, etc.)
 }

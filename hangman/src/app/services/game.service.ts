@@ -39,7 +39,6 @@ export class GameService {
   ];
 
   constructor() {
-    // Persist state on every change
     this.gameState$.subscribe(state => {
       GameService.saveState(state);
     });
@@ -71,7 +70,6 @@ export class GameService {
     state.guessedLetters.push(upperLetter);
     if (state.word.includes(upperLetter)) {
       state.correctGuesses.push(upperLetter);
-      // Track if this was a hint
       if (!state.hintedLetters) state.hintedLetters = [];
       if (hinted) state.hintedLetters.push(upperLetter);
       const uniqueLetters = Array.from(new Set(state.word.split('')));
@@ -119,7 +117,6 @@ export class GameService {
     const unguessed = state.word.split('').filter(l => !state.guessedLetters.includes(l));
     if (unguessed.length > 0) {
       const hintLetter = unguessed[Math.floor(Math.random() * unguessed.length)];
-      // Add the hint letter as a special type of guess
       this.guessLetter(hintLetter, true);
     }
   }

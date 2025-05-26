@@ -21,3 +21,5 @@ Commit #3: Fix functionality, add welcome page, improve UI
 Commit #4: Refactor hint system, fix input focus
 - Hint system: Instead of an alert showing the hint, the hinted letter is now revealed directly in the word to guess. Styled distinctly from other guesses (green for correct, red for incorrect, blue for hints). This provides immediate visual feedback without interrupting the gameplay flow.
 - Input focus: The letter input field now automatically regains focus after any guess or button interaction, ensuring a seamless and efficient user experience.
+
+Commit #5: Add unit tests

@@ -12,7 +12,6 @@ export class WordToGuessComponent {
   @Input() hintedLetters: string[] = [];
 
   get letters(): { value: string | null, hinted: boolean }[] {
-    // Return array of objects: letter value and whether it was hinted
     return this.word.split('').map(l =>
       this.guessedLetters.includes(l)
         ? { value: l, hinted: this.hintedLetters.includes(l) }

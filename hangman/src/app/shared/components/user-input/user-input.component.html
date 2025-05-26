@@ -9,7 +9,6 @@
       type="text"
       maxlength="1"
       formControlName="letter"
-      [disabled]="gameOver"
     />
     <span class="input-error-space">
       <span *ngIf="!gameOver && form.get('letter')?.invalid && (form.get('letter')?.dirty || form.get('letter')?.touched)" class="validation-error">

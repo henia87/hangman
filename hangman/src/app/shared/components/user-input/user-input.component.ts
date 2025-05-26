@@ -21,6 +21,13 @@ export class UserInputComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if (changes['gameOver']) {
+      if (this.gameOver) {
+        this.form.get('letter')?.disable({ emitEvent: false });
+      } else {
+        this.form.get('letter')?.enable({ emitEvent: false });
+      }
+    }
     if (changes['resetKey'] && !changes['resetKey'].firstChange) {
       this.form.reset();
       this.form.markAsPristine();
